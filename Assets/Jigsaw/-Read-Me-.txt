@@ -1,0 +1,113 @@
+-------------------------------------------------------------------------
+WyrmTale Jigsaw Puzzle Pack
+(C)opyright 2011 WyrmTale Games
+-------------------------------------------------------------------------
+
+INSTALLATION FROM UNITY ASSET STORE
+
+After you download and import this package from the Unity Asset Store, this product, containing the fully scripted and  functional dice, will be automaticly installed.
+
+INSTALLATION AFTER DOWNLOAD FROM WWW.WYRMTALE.COM WEBSITE
+
+After you have downloaded the component archive file (Jigsaw-puzzle-pack.rar) you will find a Jigsaw-puzzle-pack.unitypackage when you extract the files from the archive.
+
+To install this package :
+
+- create an empty Unity Project.
+- select [Menu] Assets->Import Package->Custom Package
+- select the extracted Jigsaw-puzzle-pack.unitypackage and import all assets.
+
+After importing is complete, you will be ready to go.
+
+-------------------------------------------------------------------------
+
+DEMO PROJECTS
+
+if  [Project] Jigsaw/Demo you will find two Product Demo scene's .
+
+- Demo 				: for windows desktop and windows web player
+
+- Demo-mac-ios	: for iPhone, iPad and Mac
+
+IMPORTANT! When publishing to iPhone or iPad, be sure you use the Demo-mac-ios scene
+in the build settings and set your Player Settings target platform to arm6 (openGL ES1.1)
+
+- JSDemo			: Javascript Demo.
+
+IMPORTANT ! 
+To run the Javascript Sample you need to move the /Jigsaw/Standard Assets folder into the {root}/ of your project.,
+The reason for this is because the JigsawPuzzle class we are extending is a C# class and has to be pre-compiled.
+The JS script files were commented to avoid import compiler errors so you need to remove the begin /*  & end */ tags.
+You have to set the Puzzle editor settings before starting the example. Check the C# sample for the right values.
+
+-------------------------------------------------------------------------
+
+USAGE
+
+ To Create an Ingame Puzzle
+
+ 1. Subclass the JigsawPuzzle Class to a 'custom' JigsawPuzzle Class like 
+	( names like DemoJigsawPuzzle, CustomJigsawPuzzle, GameJigsawPuzzle would be advisable for this subclass )
+
+	TIP! Check DemoJigsawPuzzle class in product Demo for reference. You can always re-use and modify that one.      		//re-use和TIP
+
+	the DemoJigsawPuzzle Class is a sub class of JigsawPuzzle that can be used to create the ingame puzzle and handle
+	specific call backs , like notification when the puzzle has been solved.     											//Demo 
+
+	The following base functions can/have been overridden :
+
+		- PuzzleStart(); 				: is called when new puzzle is started
+		- ActivatePiece(GameObject piece); 		: is called when a 'loose' puzzle piece is selected (start drag)
+		- DeactivatePiece(GameObject piece);		: is called when a 'loose' puzzle piece is released (stop drag)
+		- PiecePlaced(GameObject piece); 		: is called when a puzzle piece is placed on the puzzle on the right spot
+		- PuzzleSolved(int moves, float time);		: is called when the puzzle has been solved	
+
+ 2. Add The JigsawMain prefab in | [Project]/Jigsaw/Standard Assets | to the current scene 	
+ 3. Create a (scaled) puzzle cube primitive - the puzzle will automaticly generated on the 'forward' side of this cube
+ 4. Set the right dimensions ( width/height/Thickness = scale x/y/z) of your puzzle cube primitive
+ 5. Add your 'custom' JigsawPuzzle subclass (from step 1.) to your puzzle 'cube' game object
+ 6. adjust the settings of your puzzle
+
+	-	image 			: 	will contain the jigsaw projected picture
+	-	size			:	how many pieces will this puzzle have (x,y)
+	-	topLeftPiece 		:	format YX (1,2,3,4,5) so 11 to 55 - 25 unique start possiblities
+	-	showImage		:	display 'helper' semi-transparant - greyscale sample picture
+	-	showLines		:   	display 'helper' puzzle matrix 
+	-	placePrecision		:	how precise must a piece beeing placed on the puzzle (12-15-25 depending on difficuly)
+
+
+-------------------------------------------------------------------------
+
+PACKAGE STRUCTURE
+
+ [Project] Jigsaw/Demo 			- Product Demo (scene file + Demo application script + DemoJigsawPuzzle class + demo materials + demo textures)
+ [Project] Jigsaw/Materials 		- All default product materials and shaders and textures.									  //shaders and textures and materials
+ [Project] Jigsaw/Pieces 		- FBX imported Blender (.blend) file with all 25 x 9 = 225 unique Jigsaw pieces                   //拼图形状样式
+ [Project] Jigsaw/Standard Assets 	- JigsawMain prefab + product c# scripts													  //prefeb加 product C# 
+
+
+  All C# code in this project (demo+product) is fully 'inline' documented for learning purposes
+
+-------------------------------------------------------------------------
+
+TROUBLESHOOTING
+
+There are issues with the special shaders I created for the normal windows demo
+when using these on mac OSX or iOS. Because I am not a shader guru, I created 
+the additional demo-mac-ios that uses normal transparent and diffuse shaders.
+
+Because of polycount limitations on the iOS devices , I capped the size of
+the puzzle when playing it on an iOS device (and android -> couldnt test that )
+
+If you would use a size that is too large , the app will quit when out of memory
+on the iPhone or iPad.
+
+-------------------------------------------------------------------------
+
+If you have any questions regarding this product send us an email at support@wyrmtale.com
+
+
+Thanks for you interest in our components
+
+	The WyrmTale Team.
+
